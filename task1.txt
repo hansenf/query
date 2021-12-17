@@ -47,39 +47,3 @@ from
 where
     sc.id_mahasiswa = 1
     GROUP BY m.nama_lengkap
- 
-
-//DB 1
-Host
-ec2-52-70-205-234.compute-1.amazonaws.com
-Database
-d1g0v2r1hor2ii
-User
-xgkasjauthfvoy
-Port
-5432
-Password
-4c120dc3696c68487b7d1c1ad9ad4a6b3fc7ed12202f3f0093ef1b1848977770
-URI
-postgres://xgkasjauthfvoy:4c120dc3696c68487b7d1c1ad9ad4a6b3fc7ed12202f3f0093ef1b1848977770@ec2-52-70-205-234.compute-1.amazonaws.com:5432/d1g0v2r1hor2ii
-Heroku CLI
-heroku pg:psql postgresql-pointy-52206 --app tmi-indo
-
-//DB 2
-Host
-ec2-34-193-235-32.compute-1.amazonaws.com
-Database
-d794bq0rfordkh
-User
-pvfzhnprvrzjpe
-Port
-5432
-Password
-0480320ca7e46b2b194beec488152d4690081e99aedbc9cd23aa548a2e9adc6f
-URI
-postgres://pvfzhnprvrzjpe:0480320ca7e46b2b194beec488152d4690081e99aedbc9cd23aa548a2e9adc6f@ec2-34-193-235-32.compute-1.amazonaws.com:5432/d794bq0rfordkh
-Heroku CLI
-heroku pg:psql postgresql-transparent-48967 --app toko-muda-indonesia
-
-
-URI buat di kodingan --> routes
