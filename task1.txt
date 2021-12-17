@@ -5,10 +5,33 @@ Credential
 
 Landing Page
 1. count Universitas, practice, challange, member
+SELECT
+	(SELECT count(DISTINCT university) as jumlah_universitas FROM mahasiswa),
+	(SELECT count(id) as jumlah_practice FROM practice),
+	(SELECT count(id) as jumlah_challange FROM challange),
+	count(id) as jumlah_member
+FROM
+	mahasiswa
 
 Dashboard
 1. get dataUser --> KYC ok
 2. get data Practice/Challange/Event
+SELECT
+	m.url_foto, m.nama_lengkap,
+	/*(SELECT u.username FROM "user" u LEFT JOIN mahasiswa m on (m.id = u.id) WHERE u.id = m.id GROUP BY u.username),*/
+	m.university,
+	(SELECT COUNT(sp.finishedat) FROM "statuspractice" sp left join mahasiswa m on (m.id = sp.id_mahasiswa) where sp.id_mahasiswa = 1 GROUP BY m.nama_lengkap) as finished_practice,
+	(SELECT COUNT(id) as jumlah_practice FROM practice),
+	(SELECT COUNT(sc.finishedat) FROM "statuschallenge" sc left join mahasiswa m on (m.id = sc.id_mahasiswa) where sc.id_mahasiswa = 1 GROUP BY m.nama_lengkap) as finished_challange,
+	(SELECT COUNT(id) as jumlah_challange FROM challange),
+	SUM((SELECT SUM(skor_practice) FROM "statuspractice" WHERE id_mahasiswa = 1) + (SELECT SUM(skor_challange) FROM "statuschallenge"  WHERE id_mahasiswa = 1)) as total_skor,
+	(SELECT SUM(skor_practice) FROM "statuspractice" WHERE id_mahasiswa = 1) as total_skor_practice,
+	(SELECT SUM(skor_challange) FROM "statuschallenge"  WHERE id_mahasiswa = 1) as total_skor_challange
+FROM
+	mahasiswa m
+WHERE
+	id = 1
+GROUP BY m.id
 
 3.1. get sum dataPoint Practice
 select
@@ -38,7 +61,7 @@ from
 where
     sc.id_mahasiswa = 1
 
-4.2. get completion data Practice
+4.2. get completion data Challange
 select
     DISTINCT m.nama_lengkap, COUNT(sc.finishedat) as finished_challange, (select COUNT(c.id) FROM challange c) as total_challange
 from
