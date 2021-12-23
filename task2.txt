@@ -53,3 +53,11 @@ INNER JOIN statuspractice sp on (p.id = sp.id_practice)
 INNER JOIN mahasiswa m on (sp.id_mahasiswa = m.id)
 WHERE m.id = 1
 GROUP BY p.id
+
+--or this is the simplified query
+
+SELECT p.id, p.judul_practice, p.deskripsi
+FROM "practice" p
+LEFT JOIN statuspractice sp on (p.id = sp.id_practice)
+WHERE sp.id_mahasiswa = 1
+GROUP BY p.id
