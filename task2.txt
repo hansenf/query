@@ -1,0 +1,48 @@
+#Before-Search ---> prosessed on FE later
+Select id, judul_practice
+from practice
+
+#Filter new/complete ---> classified on FE later
+SELECT id, judul_practice, deskripsi, "createdAt"
+FROM practice
+
+#Filter category ---> add id category to filter it
+SELECT p.judul_practice, p.id_category
+FROM practice p
+LEFT JOIN category c on (c.id = p.id_category)
+WHERE c.id = 1
+
+#Practice ---> id_mahasiswa and id_practice should be POST by FE to GET the exact practice page
+SELECT p.id, p.judul_practice, p.definisi, p.fungsi_pratice, p.deskripsi, p.url_video_practice, p.task_practice, p.ujian_practice, sp.skor_practice
+FROM practice p
+INNER JOIN statuspractice sp on (p.id = sp.id_practice)
+INNER JOIN mahasiswa m on (sp.id_mahasiswa = m.id)
+WHERE m.id = 1 and p.id = 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+filter
+SELECT p.id, p.judul_practice, p.deskripsi
+FROM "practice" p
+INNER JOIN statuspractice sp on (p.id = sp.id_practice)
+INNER JOIN mahasiswa m on (sp.id_mahasiswa = m.id)
+WHERE m.id = 1
+GROUP BY p.id
