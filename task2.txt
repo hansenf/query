@@ -3,8 +3,15 @@ Select id, judul_practice
 from practice
 
 #Filter new/complete ---> classified on FE later
+--all data
 SELECT id, judul_practice, deskripsi, "createdAt"
 FROM practice
+
+--practice completed
+SELECT p.id, p.judul_practice, p.deskripsi, p."createdAt"
+FROM practice p
+LEFT JOIN statuspractice sp on (sp.id_practice = p.id)
+WHERE checkpractice = 1
 
 #Filter category ---> add id category to filter it
 SELECT p.judul_practice, p.id_category
